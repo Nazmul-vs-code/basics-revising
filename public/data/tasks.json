@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "title": "React Component Basics",
+    "description": "Understand JSX, props, and simple component composition.",
+    "category": "React",
+    "difficulty": "Easy",
+    "completed": true
+  },
+  {
+    "id": 2,
+    "title": "Master React State",
+    "description": "Learn to manage local component state using the useState hook.",
+    "category": "React",
+    "difficulty": "Medium",
+    "completed": false
+  },
+  {
+    "id": 3,
+    "title": "Fetch Data with useEffect",
+    "description": "Handle side effects and synchronize components with external APIs.",
+    "category": "React",
+    "difficulty": "Medium",
+    "completed": false
+  },
+  {
+    "id": 4,
+    "title": "Optimize with useMemo & useCallback",
+    "description": "Improve rendering performance by memoizing computations and functions.",
+    "category": "React",
+    "difficulty": "Hard",
+    "completed": false
+  },
+  {
+    "id": 5,
+    "title": "TypeScript Fundamentals",
+    "description": "Learn primitive types, type annotations, and basic function types.",
+    "category": "TypeScript",
+    "difficulty": "Easy",
+    "completed": true
+  },
+  {
+    "id": 6,
+    "title": "TypeScript Interfaces & Types",
+    "description": "Type-check components, props, and API response structures.",
+    "category": "TypeScript",
+    "difficulty": "Medium",
+    "completed": false
+  },
+  {
+    "id": 7,
+    "title": "Advanced TypeScript Generics",
+    "description": "Create reusable and flexible functions and interfaces using generics.",
+    "category": "TypeScript",
+    "difficulty": "Hard",
+    "completed": false
+  },
+  {
+    "id": 8,
+    "title": "Next.js Pages & Routing",
+    "description": "Set up file-based routing and layout structures in Next.js.",
+    "category": "Next.js",
+    "difficulty": "Easy",
+    "completed": true
+  },
+  {
+    "id": 9,
+    "title": "Next.js Server Components",
+    "description": "Fetch data directly inside Server Components for better speed.",
+    "category": "Next.js",
+    "difficulty": "Medium",
+    "completed": false
+  },
+  {
+    "id": 10,
+    "title": "Build Next.js Server Actions",
+    "description": "Handle form submissions directly on the server without custom API routes.",
+    "category": "Next.js",
+    "difficulty": "Hard",
+    "completed": false
+  }
+]
