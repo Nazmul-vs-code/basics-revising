@@ -20,15 +20,14 @@ const SearchingAndFiltering = ({ params, fetchedData }) => {
     const selectedValue = e.target.value
     setNewCategory(selectedValue)
 
-    const currentParams = new URLSearchParams(searchParams);
-    // console.log(currentParams, ' current params ')
+    const currentParams = new URLSearchParams(searchParams)
 
     if (selectedValue) {
-      currentParams.set('category' , selectedValue)
+      currentParams.set('category', selectedValue)
     } else {
-      currentParams.delete('category')
+      currentParams.delete('delete')
     }
-
+    
     router.push(`?${currentParams.toString()}`)
 
   }
