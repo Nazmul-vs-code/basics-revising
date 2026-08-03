@@ -7,11 +7,15 @@ const SearchingAndFiltering = ({ params, fetchedData }) => {
   const router = useRouter()
   const searchParams = useSearchParams()
 
-  // console.log(router, ' router')
-
+  // Filters :
   const category = params?.category
+  const difficulty = params?.difficulty
+  const completed = params?.completed
+
+  // New filters
   const [newCategory, setNewCategory] = useState(category)
-  // console.log(params , ' param ')
+  const [newDifficulty, setNewDifficulty] = useState(difficulty)
+  const [newCompleted, setNewCompleted] = useState(completed)
 
 
   // Fnction for handleing the filterings for all filtering dynamically : \
@@ -37,15 +41,43 @@ const SearchingAndFiltering = ({ params, fetchedData }) => {
 
   }
 
+  // selecting difficulty
+  const handleDifficulty = (e) => {
+    const selectedValue = e.target.value
+    setNewDifficulty(selectedValue)
+
+    handleFiltering('difficulty', selectedValue)
+
+  }
+
+
+  // Selecting Completed
+  const handleCompleted = (e) => {
+    const selectedValue = e.target.value
+    setNewCompleted(selectedValue)
+
+    handleFiltering('completed', selectedValue)
+  }
+
 
 
   // filtering 
-  const filteredData = newCategory ?
+  const filteredData =
     fetchedData.filter((task) => {
-      let filtered = task?.category.toLowerCase() == newCategory.toLowerCase();
-      return filtered
+      // Filtering for category :
+      let filteredCategory = newCategory ? task?.category.toLowerCase() == newCategory?.toLowerCase() : true;
+
+      // Filtering for difficulty :
+      let filterDifficulty = newDifficulty ? task?.difficulty.toLowerCase() == newDifficulty?.toLowerCase() : true;
+
+      // Filtering for Completed 
+      const taskCompletedStr = String(task?.completed); // Turns true/false into "true"/"false"
+      let filterCompleted = newCompleted ? taskCompletedStr === newCompleted : true;
+
+
+      return filteredCategory && filterDifficulty && filterCompleted
     })
-    : fetchedData
+
 
   // console.log(filteredData ,  ' filtered data ')
 
@@ -89,7 +121,9 @@ const SearchingAndFiltering = ({ params, fetchedData }) => {
             <label className="label text-xs font-semibold text-gray-500 uppercase pb-1">
               Difficulty
             </label>
-            <select className="select select-bordered w-full focus:outline-none focus:border-orange-500 text-sm sm:text-base">
+            <select
+              onChange={handleDifficulty}
+              className="select select-bordered w-full focus:outline-none focus:border-orange-500 text-sm sm:text-base">
               <option value="">All Difficulties</option>
               <option value="Easy">🟢 Easy</option>
               <option value="Medium">🟡 Medium</option>
@@ -97,15 +131,17 @@ const SearchingAndFiltering = ({ params, fetchedData }) => {
             </select>
           </div>
 
-          {/* Status Dropdown */}
+          {/* completed Dropdown */}
           <div className="form-control w-full">
             <label className="label text-xs font-semibold text-gray-500 uppercase pb-1">
-              Status
+              Completed
             </label>
-            <select className="select select-bordered w-full focus:outline-none focus:border-orange-500 text-sm sm:text-base">
+            <select
+              onChange={handleCompleted}
+              className="select select-bordered w-full focus:outline-none focus:border-orange-500 text-sm sm:text-base">
               <option value="">All Tasks</option>
-              <option value="pending">Pending</option>
-              <option value="completed">Completed</option>
+              <option value="true">true</option>
+              <option value="false">false</option>
             </select>
           </div>
 
