@@ -14,28 +14,35 @@ const SearchingAndFiltering = ({ params, fetchedData }) => {
   // console.log(params , ' param ')
 
 
+  // Fnction for handleing the filterings for all filtering dynamically : \
+  const handleFiltering = (key, value) => {
+    const currentParams = new URLSearchParams(searchParams)
+
+    if (value) {
+      currentParams.set(key, value)
+    } else {
+      currentParams.delete(key)
+    }
+
+    router.push(`?${currentParams.toString()}`)
+  }
+
   // Selecting category
   const handleCategory = (e) => {
     // console.log(e.target.value , ' e ')
     const selectedValue = e.target.value
     setNewCategory(selectedValue)
 
-    const currentParams = new URLSearchParams(searchParams)
-
-    if (selectedValue) {
-      currentParams.set('category', selectedValue)
-    } else {
-      currentParams.delete('delete')
-    }
-    
-    router.push(`?${currentParams.toString()}`)
+    handleFiltering('category', selectedValue)
 
   }
+
+
 
   // filtering 
   const filteredData = newCategory ?
     fetchedData.filter((task) => {
-      let filtered = task?.category.toLowerCase() == newCategory.toLowerCase()
+      let filtered = task?.category.toLowerCase() == newCategory.toLowerCase();
       return filtered
     })
     : fetchedData
