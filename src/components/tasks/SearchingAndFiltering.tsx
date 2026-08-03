@@ -17,6 +17,9 @@ const SearchingAndFiltering = ({ params, fetchedData }) => {
   const [newDifficulty, setNewDifficulty] = useState(difficulty)
   const [newCompleted, setNewCompleted] = useState(completed)
 
+  const search = searchParams.get('search') || ''
+  const [newSearch, setNewSearch] = useState(search)
+
 
   // Fnction for handleing the filterings for all filtering dynamically : \
   const handleFiltering = (key, value) => {
@@ -60,6 +63,14 @@ const SearchingAndFiltering = ({ params, fetchedData }) => {
   }
 
 
+  // Searching by search bar
+  const handleSearch = (e) => {
+    const selectedValue = e.target.value;
+    setNewSearch(selectedValue) 
+    handleFiltering('search', selectedValue)
+  }
+
+
 
   // filtering 
   const filteredData =
@@ -73,9 +84,10 @@ const SearchingAndFiltering = ({ params, fetchedData }) => {
       // Filtering for Completed 
       const taskCompletedStr = String(task?.completed); // Turns true/false into "true"/"false"
       let filterCompleted = newCompleted ? taskCompletedStr === newCompleted : true;
+      let filterSearch = newSearch ? task?.title?.toLowerCase().includes(newSearch.toLowerCase()) : true;
 
 
-      return filteredCategory && filterDifficulty && filterCompleted
+      return filteredCategory && filterDifficulty && filterCompleted && filterSearch
     })
 
 
@@ -96,6 +108,7 @@ const SearchingAndFiltering = ({ params, fetchedData }) => {
             </label>
             <input
               type="text"
+              onChange={handleSearch}
               placeholder="Search by title..."
               className="input input-bordered w-full focus:outline-none focus:border-orange-500 text-sm sm:text-base"
             />
