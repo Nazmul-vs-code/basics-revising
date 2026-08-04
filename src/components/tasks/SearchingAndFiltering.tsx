@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TaskCard from './TaskCard';
 import { useRouter, useSearchParams } from 'next/navigation';
 
@@ -11,15 +11,22 @@ const SearchingAndFiltering = ({ params, fetchedData }) => {
   const category = params?.category
   const difficulty = params?.difficulty
   const completed = params?.completed
+  const search = searchParams.get('search') || ''
 
   // New filters
+  // Implementing useEffect
   const [newCategory, setNewCategory] = useState(category)
   const [newDifficulty, setNewDifficulty] = useState(difficulty)
   const [newCompleted, setNewCompleted] = useState(completed)
 
-  const search = searchParams.get('search') || ''
   const [newSearch, setNewSearch] = useState(search)
 
+  useEffect(() => {
+    setNewCategory(category)
+    setNewDifficulty(difficulty)
+    setNewCompleted(completed)
+    setNewSearch(search)
+  }, [category, difficulty, completed, search])
 
   // Fnction for handleing the filterings for all filtering dynamically : \
   const handleFiltering = (key, value) => {
@@ -66,10 +73,9 @@ const SearchingAndFiltering = ({ params, fetchedData }) => {
   // Searching by search bar
   const handleSearch = (e) => {
     const selectedValue = e.target.value;
-    setNewSearch(selectedValue) 
+    setNewSearch(selectedValue)
     handleFiltering('search', selectedValue)
   }
-
 
 
   // filtering 
@@ -91,6 +97,10 @@ const SearchingAndFiltering = ({ params, fetchedData }) => {
     })
 
 
+
+
+  console.log(filteredData, ' filtered Data inside useEffect')
+
   // console.log(filteredData ,  ' filtered data ')
 
 
@@ -108,6 +118,7 @@ const SearchingAndFiltering = ({ params, fetchedData }) => {
             </label>
             <input
               type="text"
+              value={newSearch}
               onChange={handleSearch}
               placeholder="Search by title..."
               className="input input-bordered w-full focus:outline-none focus:border-orange-500 text-sm sm:text-base"
@@ -120,6 +131,7 @@ const SearchingAndFiltering = ({ params, fetchedData }) => {
               Category
             </label>
             <select
+            value={newCategory}
               onChange={handleCategory}
               className="select select-bordered w-full focus:outline-none focus:border-orange-500 text-sm sm:text-base">
               <option value="">All Categories</option>
@@ -135,6 +147,7 @@ const SearchingAndFiltering = ({ params, fetchedData }) => {
               Difficulty
             </label>
             <select
+            value={newDifficulty}
               onChange={handleDifficulty}
               className="select select-bordered w-full focus:outline-none focus:border-orange-500 text-sm sm:text-base">
               <option value="">All Difficulties</option>
@@ -150,6 +163,7 @@ const SearchingAndFiltering = ({ params, fetchedData }) => {
               Completed
             </label>
             <select
+            value={newCompleted}
               onChange={handleCompleted}
               className="select select-bordered w-full focus:outline-none focus:border-orange-500 text-sm sm:text-base">
               <option value="">All Tasks</option>
@@ -164,7 +178,6 @@ const SearchingAndFiltering = ({ params, fetchedData }) => {
       <div className='grid grid-cols-1 md:grid-cols-3 gap-2 my-5'>
 
         {
-
           filteredData.map(data => {
             return <div key={data.id}>
 
