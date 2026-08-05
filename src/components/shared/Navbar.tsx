@@ -1,6 +1,6 @@
 'use client'
 import Link from "next/link";
-import { FaHome, FaTasks, FaThLarge, FaUser } from "react-icons/fa";
+import { FaHome, FaTasks, FaThemeco, FaThLarge, FaUser } from "react-icons/fa";
 import MyNavLink from "./MyNavLink";
 
 export const NavLinks = [
@@ -27,6 +27,12 @@ export const NavLinks = [
         name: "Profile",
         href: "/profile",
         icon: FaUser,
+    },
+    {
+        id: 5,
+        name: "Theme",
+        href: "/theme",
+        icon: FaThemeco,
     },
 ];
 

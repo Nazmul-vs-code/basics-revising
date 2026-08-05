@@ -21,15 +21,15 @@ const SearchingAndFiltering = ({ params, fetchedData }) => {
 
   const [newSearch, setNewSearch] = useState(search)
 
-  useEffect(() => {
-    setNewCategory(category)
-    setNewDifficulty(difficulty)
-    setNewCompleted(completed)
-    setNewSearch(search)
-  }, [category, difficulty, completed, search])
+  // useEffect(() => {
+  //   setNewCategory(category)
+  //   setNewDifficulty(difficulty)
+  //   setNewCompleted(completed)
+  //   setNewSearch(search)
+  // }, [category, difficulty, completed, search])
 
   // Fnction for handleing the filterings for all filtering dynamically : \
-  const handleFiltering = (key, value) => {
+  const handleFiltering = (key : string, value:string) => {
     const currentParams = new URLSearchParams(searchParams)
 
     if (value) {
@@ -82,7 +82,7 @@ const SearchingAndFiltering = ({ params, fetchedData }) => {
   const filteredData =
     fetchedData.filter((task) => {
       // Filtering for category :
-      let filteredCategory = newCategory ? task?.category.toLowerCase() == newCategory?.toLowerCase() : true;
+      let filteredCategory  = newCategory ? task?.category.toLowerCase() == newCategory?.toLowerCase() : true;
 
       // Filtering for difficulty :
       let filterDifficulty = newDifficulty ? task?.difficulty.toLowerCase() == newDifficulty?.toLowerCase() : true;
