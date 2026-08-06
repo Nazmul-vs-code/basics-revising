@@ -99,7 +99,7 @@ const SearchingAndFiltering = ({ params, fetchedData }) => {
 
 
 
-  console.log(filteredData, ' filtered Data inside useEffect')
+  // console.log(filteredData, ' filtered Data inside useEffect')
 
   // console.log(filteredData ,  ' filtered data ')
 

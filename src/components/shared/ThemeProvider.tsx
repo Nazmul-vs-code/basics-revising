@@ -5,7 +5,7 @@ import { ThemeContext } from './ThemeContext';
 const ThemeProvider = ({ children }) => {
     return (
         <div>
-            <ThemeContext.Provider value={'dark'}>
+            <ThemeContext.Provider value={'light'}>
 
                 {children}
             </ThemeContext.Provider>
