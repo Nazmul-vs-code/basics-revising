@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { FaHome, FaTasks, FaThemeco, FaThLarge, FaUser } from "react-icons/fa";
 import MyNavLink from "./MyNavLink";
+import { SiGooglegemini } from "react-icons/si";
 
 export const NavLinks = [
     {
@@ -33,6 +34,12 @@ export const NavLinks = [
         name: "Theme",
         href: "/theme",
         icon: FaThemeco,
+    },
+    {
+        id: 6,
+        name: "Gemini Clone",
+        href: "/Gemini",
+        icon: SiGooglegemini,
     },
 ];
 
