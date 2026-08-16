@@ -1,13 +1,13 @@
 const baseUrl = 'http://localhost:3000'
 
-const fetchData = async (endpoint, method='POST', clientData ) => {
+export const fetchData = async (endpoint:string, method='POST', prompt:string ) => {
     const data = await fetch(`${baseUrl}${endpoint}`, {
         method: method,
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            clientData
+            prompt
         })
     })
 

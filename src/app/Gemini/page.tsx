@@ -1,9 +1,17 @@
+'use client'
+import { geminiFetch } from "@/lib/server-fetch/geminiFetch";
 import { SiGooglegemini } from "react-icons/si";
 
 const Page = () => {
 
   const onSubmit = async (e) => {
-    console.log(e.target)
+     e.preventDefault();
+    let prompt = e.target.userMessage.value;
+    // console.log(prompt, ' user prompt ')
+    const result = await geminiFetch(prompt);
+    console.log(result, ' : result from gemini ');
+    e.target.userMessage.value = "";  
+
   }
 
   return (
@@ -44,7 +52,7 @@ const Page = () => {
 
           {/* Input */}
           <div className="join w-full mt-6">
-            <form onSubmit={onSubmit}>
+            <form className="w-full" onSubmit={onSubmit}>
 
               <input
                 type="text"
