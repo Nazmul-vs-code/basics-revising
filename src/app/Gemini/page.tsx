@@ -1,10 +1,15 @@
 import { SiGooglegemini } from "react-icons/si";
 
 const Page = () => {
+
+  const onSubmit = async (e) => {
+    console.log(e.target)
+  }
+
   return (
     <div className="min-h-screen bg-base-200 py-10">
       <div className="mx-auto w-full max-w-2xl px-4">
-        
+
         {/* Header */}
         <div className="mb-6 text-center">
           <div className="flex justify-center items-center gap-2">
@@ -39,14 +44,18 @@ const Page = () => {
 
           {/* Input */}
           <div className="join w-full mt-6">
-            <input
-              type="text"
-              placeholder="Ask Gemini..."
-              className="input input-bordered join-item w-full"
-            />
-            <button className="btn btn-primary join-item">
-              Send
-            </button>
+            <form onSubmit={onSubmit}>
+
+              <input
+                type="text"
+                name="userMessage"
+                placeholder="Ask Gemini..."
+                className="input input-bordered join-item w-full"
+              />
+              <button type="submit" className="btn btn-primary join-item">
+                Send
+              </button>
+            </form>
           </div>
 
         </div>
