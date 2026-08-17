@@ -21,8 +21,8 @@ export async function POST(req: Request) {
             contents: prompt
         });
 
-        const sumary = result.text;
-        return NextResponse.json({ sumary })
+        const summary = result.text;
+        return NextResponse.json({summary })
 
     } catch (err: unknown) {
         console.log(err);
